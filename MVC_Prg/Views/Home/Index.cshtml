@@ -1,0 +1,103 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MVS_Prg.Models
+@model IndexViewModel
+
+<h2>Літаки</h2>
+<p><a asp-action="CreatePlane">Додати літак</a></p>
+<p><a asp-action="CreateAirline">Додати авіакомпанію</a></p>
+<table>
+    <tr>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.AirlineSort">
+                Airline_id
+            </a>
+        </th>
+        <th>
+            Airline_Name
+        </th>
+        <th>
+
+            Flight_Id
+
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@ViewBag.PassQuontSort">
+                Max_Plane_Quont
+            </a>
+        </th>
+        <th>
+
+            Pilote_Quont
+
+        </th>
+        <th>
+
+            Flight_Attendant_Quont
+
+        </th>
+        <th>
+
+            Carrying_Capacity
+
+        </th>
+        <th>
+
+            Fuel_Consumption
+
+        </th>
+       
+    </tr>
+    <h2>Пошук літака по кількості пасажирів</h2>
+
+    <form method="get">
+        <div>
+            <p>
+                <label asp-for="minPassQuont">Мінімум</label><br />
+                <input type="decimal" asp-for="minPassQuont" />
+            </p>
+            <p>
+                <label asp-for="maxPassQuont">Максимум</label><br />
+                <input type="decimal" asp-for="maxPassQuont" />
+            </p>
+            <input type="submit" value="Фільтр" />
+        </div>
+    </form>
+    @foreach (Plane u in Model.Planes)
+    {
+    <tr>
+        <td>@u.Airline_id</td>
+        <td>@u.Airline_Name</td>
+        <td>@u.Flight_Id</td>
+        <td>@u.Max_Plane_Quont</td>
+        <td>@u.Pilote_Quont</td>
+        <td>@u.Flight_Attendant_Quont</td>
+        <td>@u.Carrying_Capacity</td>
+        <td>@u.Fuel_Consumption</td>
+    <td>
+    <a asp-action="EditPlane" asp-controller="Home" asp-route-id="@u.PlaneId">Редагувати</a>
+    </td>
+    <td>
+    <form asp-controller="Home" asp-action="DeletePlane" method="post" asp-route-id="@u.PlaneId">
+    <input type="submit" value="Видалити" />
+    </form>
+    </td>
+    </tr>
+    }
+</table>
+<p>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)" class="glyphicon glyphicon-chevron-left">
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)" class="glyphicon glyphicon-chevron-right">
+            Вперед
+        </a>
+    }
+</p>

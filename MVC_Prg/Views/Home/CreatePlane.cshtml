@@ -1,0 +1,43 @@
+﻿@model MVS_Prg.Models.Plane
+
+<h2>Додати літак</h2>
+<form asp-action="CreatePlane" asp-controller="home">
+    <p>
+        <label asp-for="Airline">Airline</label><br />
+        <select asp-for="Airline_id" asp-items="ViewBag.AirIds" class="form-control">
+            <option value="">Оберіть айді авіалінії</option>
+        </select>
+    </p>
+    <p>
+        <label asp-for="Airline_Name">Airline_Name</label><br />
+        <input type="string" asp-for="Airline_Name" />
+    </p>
+    <p>
+        <label asp-for="Flight_Id">Flight_Id</label><br />
+        <input type="int" asp-for="Flight_Id" />
+    </p>
+    <p>
+        <label asp-for="Max_Plane_Quont">Max_Plane_Quont</label><br />
+        <input type="int" asp-for="Max_Plane_Quont" />
+    </p>
+    <p>
+        <label asp-for="Pilote_Quont">Pilote_Quont</label><br />
+        <input type="int" asp-for="Pilote_Quont" />
+    </p>
+    <p>
+        <label asp-for="Flight_Attendant_Quont">Flight_Attendant_Quont</label><br />
+        <input type="int" asp-for="Flight_Attendant_Quont" />
+    </p>
+    <p>
+        <label asp-for="Carrying_Capacity">Carrying_Capacity</label><br />
+        <input type="double" asp-for="Carrying_Capacity" />
+    </p>
+    <p>
+        <label asp-for="Fuel_Consumption">Fuel_Consumption</label><br />
+        <input type="double" asp-for="Fuel_Consumption" />
+    </p>
+    <p>
+        <input type="submit" value="Відправити" />
+    </p>
+</form>
+
